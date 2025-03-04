@@ -1,5 +1,5 @@
-# Sistema de Registro de créditos
-Herramienta web desarrollada con **Flask**, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados.
+# Sistema de registro de créditos
+Herramienta web desarrollada con Python - Flask, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados.
 
 ## Características
 - Registro de créditos con los siguientes datos:
@@ -58,8 +58,7 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 2. **Abrir en el navegador**
 
     Accede a la aplicación desde:
-   
-   http://127.0.0.1:5000
+    http://127.0.0.1:5000
 
 
 ## Estructura del proyecto
