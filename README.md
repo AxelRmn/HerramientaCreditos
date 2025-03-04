@@ -28,20 +28,24 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 1. **Clonar el repositorio**
 
    git clone https://github.com/AxelRmn/HerramientaCreditos.git
+   
    cd HerramientaCreditos
 
-2. **Crear un entorno virtual (opcional pero recomendado)**
+3. **Crear un entorno virtual (opcional pero recomendado)**
+
     -m venv venv
 
-3. **Activar el entorno virtual**
+4. **Activar el entorno virtual**
 
     En Windows:
+   
         venv\Scripts\activate
    
     En macOS y Linux:
+   
         source venv/bin/activate
 
-4. **Instalar dependencias**
+5. **Instalar dependencias**
 
     pip install -r requirements.txt
 
@@ -53,6 +57,7 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 2. **Abrir en el navegador**
 
     Accede a la aplicación desde:
+   
         http://127.0.0.1:5000
 
 
