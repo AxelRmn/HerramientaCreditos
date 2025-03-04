@@ -27,13 +27,13 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 ## Instalación
 1. **Clonar el repositorio**
 
-   git clone https://github.com/AxelRmn/HerramientaCreditos.git
+       git clone https://github.com/AxelRmn/HerramientaCreditos.git
    
-   cd HerramientaCreditos
+       cd HerramientaCreditos
 
 3. **Crear un entorno virtual (opcional pero recomendado)**
 
-    -m venv venv
+        -m venv venv
 
 4. **Activar el entorno virtual**
 
@@ -47,22 +47,23 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 
 5. **Instalar dependencias**
 
-    pip install -r requirements.txt
+       pip install -r requirements.txt
+   
 
 ## Uso
 1. **Ejecutar la aplicación**
 
-    python app.py
+       python app.py
 
 2. **Abrir en el navegador**
 
     Accede a la aplicación desde:
    
-        http://127.0.0.1:5000
+   http://127.0.0.1:5000
 
 
 ## Estructura del proyecto
-    /creditos_app
+  /creditos_app
     │── app.py                # Archivo principal que inicia la aplicación
     │── database.py           # Configuración de la base de datos
     │── routes.py             # Definición de las rutas y lógica de la API
