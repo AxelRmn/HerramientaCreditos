@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de créditos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container-bordered {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+
+        #creditoChartContainer {
+            border: 2px solid #ccc;
+            padding: 10px;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container-bordered">
+            <h1 class="text-center">Registro de créditos</h1>
+            <form id="creditoForm" class="mt-4">
+                <input type="hidden" id="creditoId">
+                <div class="form-group">
+                    <label for="cliente">Nombre del cliente</label>
+                    <input type="text" class="form-control" id="cliente" required>
+                </div>
+                <div class="form-group">
+                    <label for="monto">Monto del crédito</label>
+                    <input type="number" class="form-control" id="monto" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="tasa_interes">Tasa de interés (%)</label>
+                    <input type="number" class="form-control" id="tasa_interes" min="0.1" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="plazo">Plazo (meses)</label>
+                    <input type="number" class="form-control" id="plazo" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_otorgamiento">Fecha de otorgamiento</label>
+                    <input type="date" class="form-control" id="fecha_otorgamiento" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar crédito</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container-bordered">
+            <h2 class="text-center">Créditos registrados</h2>
+            <div class="table-responsive">
+                <table class="table table-striped mt-3">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Monto</th>
+                            <th>Tasa de interés (%)</th>
+                            <th>Plazo (meses)</th>
+                            <th>Fecha de otorgamiento</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="creditosTableBody" class="text-center"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container-bordered">
+            <h2 class="text-center">Gráfica de créditos</h2>
+            <div id="creditoChartContainer" class="mt-3">
+                <canvas id="creditoChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('creditoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('creditoId').value;
+            const data = {
+                cliente: document.getElementById('cliente').value.trim(),
+                monto: parseFloat(document.getElementById('monto').value),
+                tasa_interes: parseFloat(document.getElementById('tasa_interes').value),
+                plazo: parseInt(document.getElementById('plazo').value),
+                fecha_otorgamiento: document.getElementById('fecha_otorgamiento').value
+            };
+
+            const url = id ? `/creditos/${id}` : '/creditos';
+            const method = id ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                alert(responseData.message || responseData.error);
+                document.getElementById('creditoForm').reset();
+                document.getElementById('creditoId').value = '';
+                cargarCreditos();
+                actualizarGrafica();
+            })
+            .catch(error => console.error('Error al registrar crédito:', error));
+        });
+
+        function cargarCreditos() {
+            fetch('/creditos')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('creditosTableBody');
+                    tableBody.innerHTML = ''; 
+
+                    data.forEach(credito => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${credito.cliente}</td>
+                            <td>$${credito.monto}</td>
+                            <td>${credito.tasa_interes}%</td>
+                            <td>${credito.plazo}</td>
+                            <td>${credito.fecha_otorgamiento}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" onclick="editarCredito(${credito.id})">Editar</button>
+                                <button class="btn btn-danger btn-sm" onclick="eliminarCredito(${credito.id})">Eliminar</button>
+                            </td>
+                        `;
+
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al cargar créditos:', error));
+        }
+
+        function editarCredito(id) {
+            fetch(`/creditos/${id}`)
+                .then(response => response.json())
+                .then(credito => {
+                    document.getElementById('creditoId').value = credito.id;
+                    document.getElementById('cliente').value = credito.cliente;
+                    document.getElementById('monto').value = credito.monto;
+                    document.getElementById('tasa_interes').value = credito.tasa_interes;
+                    document.getElementById('plazo').value = credito.plazo;
+                    document.getElementById('fecha_otorgamiento').value = credito.fecha_otorgamiento;
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                })
+                .catch(error => console.error('Error al cargar crédito para edición:', error));
+        }
+
+        function eliminarCredito(id) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este crédito?')) return;
+
+            fetch(`/creditos/${id}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(responseData => {
+                    alert(responseData.message || responseData.error);
+                    cargarCreditos();
+                    actualizarGrafica();
+                })
+                .catch(error => console.error('Error al eliminar crédito:', error));
+        }
+
+        function actualizarGrafica() {
+            fetch('/creditos')
+                .then(response => response.json())
+                .then(data => {
+                    const ctx = document.getElementById('creditoChart').getContext('2d');
+
+                    if (window.creditoChart instanceof Chart) {
+                        window.creditoChart.destroy();
+                    }
+
+                    const labels = data.map(credito => credito.cliente);
+                    const montos = data.map(credito => credito.monto);
+
+                    window.creditoChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Monto de créditos',
+                                data: montos,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: { 
+                            scales: { 
+                                y: { beginAtZero: true } 
+                            } 
+                        }
+                    });
+                })
+                .catch(error => console.error('Error al actualizar la gráfica:', error));
+        }
+
+        cargarCreditos();
+        actualizarGrafica();
+    </script>
+</body>
+</html>
