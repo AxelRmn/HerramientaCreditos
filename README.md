@@ -63,7 +63,7 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 
 
 ## Estructura del proyecto
-  /creditos_app
+    /creditos_app
     │── app.py                # Archivo principal que inicia la aplicación
     │── database.py           # Configuración de la base de datos
     │── routes.py             # Definición de las rutas y lógica de la API
