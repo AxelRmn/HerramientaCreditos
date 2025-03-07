@@ -1,5 +1,5 @@
-# Sistema de Registro de créditos
-Herramienta web desarrollada con **Flask**, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados.
+# Sistema de registro de créditos
+Herramienta web desarrollada con Python - Flask, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados.
 
 ## Características
 - Registro de créditos con los siguientes datos:
@@ -27,33 +27,38 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 ## Instalación
 1. **Clonar el repositorio**
 
-   git clone https://github.com/AxelRmn/HerramientaCreditos.git
-   cd HerramientaCreditos
+       git clone https://github.com/AxelRmn/HerramientaCreditos.git
+   
+       cd HerramientaCreditos
 
-2. **Crear un entorno virtual (opcional pero recomendado)**
-    -m venv venv
+3. **Crear un entorno virtual (opcional pero recomendado)**
 
-3. **Activar el entorno virtual**
+        -m venv venv
+
+4. **Activar el entorno virtual**
 
     En Windows:
+   
         venv\Scripts\activate
    
     En macOS y Linux:
+   
         source venv/bin/activate
 
-4. **Instalar dependencias**
+5. **Instalar dependencias**
 
-    pip install -r requirements.txt
+       pip install -r requirements.txt
+   
 
 ## Uso
 1. **Ejecutar la aplicación**
 
-    python app.py
+       python app.py
 
 2. **Abrir en el navegador**
 
     Accede a la aplicación desde:
-        http://127.0.0.1:5000
+    http://127.0.0.1:5000
 
 
 ## Estructura del proyecto
