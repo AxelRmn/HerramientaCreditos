@@ -6,9 +6,10 @@ from datetime import datetime
 main = Blueprint('main', __name__)
 CORS(main)  # Habilita CORS para solicitudes desde el frontend
 
+
 @main.route('/creditos', methods=['POST'])
 def registrar_credito():
-    """Registra un nuevo crédito en la base de datos."""
+    # Registra un nuevo crédito en la base de datos
     try:
         data = request.get_json(silent=True)
         if not data:
@@ -21,7 +22,7 @@ def registrar_credito():
         monto = float(data['monto'])
         tasa_interes = float(data['tasa_interes'])
         plazo = int(data['plazo'])
-        fecha_otorgamiento = datetime.strptime(data['fecha_otorgamiento'], '%Y-%m-%d').date()
+        fecha_otorgamiento = data['fecha_otorgamiento']
 
         if monto <= 0 or tasa_interes <= 0 or plazo <= 0:
             return jsonify({'error': 'Los valores deben ser positivos'}), 400
@@ -41,9 +42,10 @@ def registrar_credito():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @main.route('/creditos', methods=['GET'])
 def listar_creditos():
-    """Lista todos los créditos ordenados por fecha de otorgamiento."""
+    # Lista todos los créditos ordenados por fecha de otorgamiento
     try:
         creditos = Credito.query.order_by(Credito.fecha_otorgamiento.desc()).all()
         return jsonify([credito.to_dict() for credito in creditos]), 200
@@ -52,16 +54,17 @@ def listar_creditos():
 
 @main.route('/creditos/<int:id>', methods=['GET'])
 def obtener_credito(id):
-    """Obtiene un crédito específico por su ID."""
+    # Obtiene un crédito específico por su ID
     try:
         credito = Credito.query.get_or_404(id)
         return jsonify(credito.to_dict()), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @main.route('/creditos/<int:id>', methods=['PUT'])
 def editar_credito(id):
-    """Edita un crédito existente en la base de datos."""
+    # Edita un crédito existente en la base de datos
     try:
         credito = Credito.query.get_or_404(id)
         data = request.get_json(silent=True)
@@ -89,9 +92,10 @@ def editar_credito(id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @main.route('/creditos/<int:id>', methods=['DELETE'])
 def eliminar_credito(id):
-    """Elimina un crédito de la base de datos."""
+    # Elimina un crédito de la base de datos
     try:
         credito = Credito.query.get_or_404(id)
         db.session.delete(credito)

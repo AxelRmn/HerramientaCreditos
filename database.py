@@ -12,7 +12,7 @@ class Credito(db.Model):
     monto = db.Column(db.Float, nullable=False)
     tasa_interes = db.Column(db.Float, nullable=False)
     plazo = db.Column(db.Integer, nullable=False)
-    fecha_otorgamiento = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    fecha_otorgamiento = db.Column(db.String(10), nullable=False, default=datetime)
 
     def to_dict(self) -> dict:
         # Convierte el objeto en un diccionario para JSON.
@@ -22,7 +22,7 @@ class Credito(db.Model):
             'monto': round(self.monto, 2),
             'tasa_interes': round(self.tasa_interes, 2),
             'plazo': self.plazo,
-            'fecha_otorgamiento': self.fecha_otorgamiento.strftime('%Y-%m-%d')
+            'fecha_otorgamiento': self.fecha_otorgamiento
         }
 
 def init_db(app):
