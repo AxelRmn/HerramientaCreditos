@@ -23,6 +23,8 @@ Herramienta web desarrollada con Python - Flask, que permite registrar, visualiz
 Antes de ejecutar el proyecto, debe de estar instalado:
 - **Python 3.7+**
 - **pip** (administrador de paquetes de Python)
+- **SQLite** (para la base de datos)
+
 
 ## Instalación
 1. **Clonar el repositorio**
@@ -70,13 +72,13 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 
 
 ## Estructura del proyecto
-HerramientaCreditos    
-    app.py                # Archivo principal que inicia la aplicación
-    database.py           # Configuración de la base de datos
-    routes.py             # Definición de las rutas y lógica de la API
-    templates/
-        └── index.html        # Interfaz web de la aplicación
-    requirements.txt      # Lista de dependencias necesarias
-    README.md             # Documentación del proyecto
+    /HerramientaCreditos
+    │── app.py                # Archivo principal que inicia la aplicación
+    │── database.py           # Configuración de la base de datos
+    │── routes.py             # Definición de las rutas y lógica de la API
+    │── templates/
+    │   └── index.html        # Interfaz web de la aplicación
+    │── requirements.txt      # Lista de dependencias necesarias
+    │── README.md             # Documentación del proyecto
 
     
