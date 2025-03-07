@@ -67,6 +67,10 @@ def editar_credito(id):
     # Edita un crédito existente en la base de datos
     try:
         credito = Credito.query.get_or_404(id)
+
+        credito_dict = credito.to_dict()
+        credito_dict['fecha_otorgamiento'] = credito_dict['fecha_otorgamiento']
+        
         data = request.get_json(silent=True)
 
         if not data:

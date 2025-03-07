@@ -31,11 +31,11 @@ Antes de ejecutar el proyecto, debe de estar instalado:
    
        cd HerramientaCreditos
 
-3. **Crear un entorno virtual (opcional pero recomendado)**
+2. **Crear un entorno virtual (opcional pero recomendado)**
 
         -m venv venv
 
-4. **Activar el entorno virtual**
+3. **Activar el entorno virtual**
 
     En Windows:
    
@@ -45,7 +45,7 @@ Antes de ejecutar el proyecto, debe de estar instalado:
    
         source venv/bin/activate
 
-5. **Instalar dependencias**
+4. **Instalar dependencias**
 
        pip install -r requirements.txt
    
@@ -61,12 +61,22 @@ Antes de ejecutar el proyecto, debe de estar instalado:
     http://127.0.0.1:5000
 
 
+## Tecnologías utilizadas
+
+- **Backend**: Flask (Python)
+- **Base de datos**: SQLite
+- **Frontend**: HTML, CSS, JavaScript (Bootstrap, Chart.js)
+- **Gráfica**: Chart.js para la visualización de los créditos
+
+
 ## Estructura del proyecto
-    /creditos_app
-    │── app.py                # Archivo principal que inicia la aplicación
-    │── database.py           # Configuración de la base de datos
-    │── routes.py             # Definición de las rutas y lógica de la API
-    │── templates/
-    │   └── index.html        # Interfaz web de la aplicación
-    │── requirements.txt      # Lista de dependencias necesarias
-    │── README.md             # Documentación del proyecto
+HerramientaCreditos    
+    app.py                # Archivo principal que inicia la aplicación
+    database.py           # Configuración de la base de datos
+    routes.py             # Definición de las rutas y lógica de la API
+    templates/
+        └── index.html        # Interfaz web de la aplicación
+    requirements.txt      # Lista de dependencias necesarias
+    README.md             # Documentación del proyecto
+
+    

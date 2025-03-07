@@ -12,10 +12,10 @@ class Credito(db.Model):
     monto = db.Column(db.Float, nullable=False)
     tasa_interes = db.Column(db.Float, nullable=False)
     plazo = db.Column(db.Integer, nullable=False)
-    fecha_otorgamiento = db.Column(db.String(10), nullable=False, default=datetime)
+    fecha_otorgamiento = db.Column(db.String(10), nullable=False)
 
     def to_dict(self) -> dict:
-        # Convierte el objeto en un diccionario para JSON.
+        # Convierte el objeto en un diccionario para JSON
         return {
             'id': self.id,
             'cliente': self.cliente,

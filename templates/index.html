@@ -154,7 +154,8 @@
                     document.getElementById('monto').value = credito.monto;
                     document.getElementById('tasa_interes').value = credito.tasa_interes;
                     document.getElementById('plazo').value = credito.plazo;
-                    document.getElementById('fecha_otorgamiento').value = credito.fecha_otorgamiento;
+                    const fecha = credito.fecha_otorgamiento.split('-');
+                    document.getElementById('fecha_otorgamiento').value = fecha;
 
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 })
