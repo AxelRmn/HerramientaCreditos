@@ -68,11 +68,11 @@ Antes de ejecutar el proyecto, debe de estar instalado:
     │── app.py                # Archivo principal que inicia la aplicación
     │── database.py           # Configuración de la base de datos
     │── routes.py             # Definición de las rutas y lógica de la API
-    │── templates/
-    │   └── index.html        # Interfaz web de la aplicación
     │── requirements.txt      # Lista de dependencias necesarias
     │── README.md             # Documentación del proyecto
-
+    │── templates/
+    │   └── index.html          # Interfaz web de la aplicación
+    │── images/               # Imágenes de la interfaz web
 
 ## Posibles errores y soluciones
 1. Error de dependencias
@@ -89,15 +89,15 @@ Antes de ejecutar el proyecto, debe de estar instalado:
 
 ## Imágenes de interfaz
 
-1. Registro de créditos 
-![RegistroDeCreditos](images/RegistroCreditos.png)
+1. Registro de créditos  
+![RegistroDeCreditos](images/RegistroCreditos.png)  
 
-2. Lista de créditos registrados 
-![CreditosRegistrados](images/CreditosRegistrados.png)
+2. Lista de créditos registrados  
+![CreditosRegistrados](images/CreditosRegistrados.png)  
 
-3. Gráfica de créditos registrados 
-![GraficaCreditos](images/GraficaCreditos.png)
+3. Gráfica de créditos registrados  
+![GraficaCreditos](images/GraficaCreditos.png)  
 
-4. Interfaz completa 
+4. Interfaz completa  
 ![Interfaz](images/Interfaz.png)
 
