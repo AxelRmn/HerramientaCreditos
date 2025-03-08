@@ -6,6 +6,7 @@
     <title>Registro de créditos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         .container-bordered {
             max-width: 950px;
@@ -28,9 +29,10 @@
 <body>
     <div class="container-fluid">
         <div class="container-bordered">
+            <!-- Formulario para ingresar nuevos créditos -->
             <h1 class="text-center">Registro de créditos</h1>
             <form id="creditoForm" class="mt-4">
-                <input type="hidden" id="creditoId">
+                <input type="hidden" id="creditoId"> <!-- Campo oculto para identificar si es edición -->
                 <div class="form-group">
                     <label for="cliente">Nombre del cliente</label>
                     <input type="text" class="form-control" id="cliente" required>
@@ -51,7 +53,7 @@
                     <label for="fecha_otorgamiento">Fecha de otorgamiento</label>
                     <input type="text" class="form-control" id="fecha_otorgamiento" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required title="Ingrese la fecha en formato YYYY-MM-DD">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Registrar crédito</button>
+                <button type="submit" class="btn btn-primary btn-block">Registrar/Actualizar crédito</button>
             </form>
         </div>
     </div>
@@ -87,6 +89,7 @@
     </div>
 
     <script>
+        // Manejo del formulario para registrar créditos
         document.getElementById('creditoForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -99,7 +102,7 @@
                 fecha_otorgamiento: document.getElementById('fecha_otorgamiento').value
             };
 
-            const url = id ? `/creditos/${id}` : '/creditos';
+            const url = id ? `/creditos/${id}` : '/creditos'; // Si hay un ID, actualiza, si no, crea
             const method = id ? 'PUT' : 'POST';
 
             fetch(url, {
@@ -118,6 +121,7 @@
             .catch(error => console.error('Error al registrar crédito:', error));
         });
 
+        // Cargar créditos en la tabla
         function cargarCreditos() {
             fetch('/creditos')
                 .then(response => response.json())

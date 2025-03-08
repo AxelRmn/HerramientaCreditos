@@ -31,3 +31,4 @@ if __name__ == '__main__':
     # Crear la aplicación y ejecutarla en modo depuración
     app = create_app()
     app.run(debug=True)
+    

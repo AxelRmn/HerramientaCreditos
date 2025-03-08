@@ -1,5 +1,5 @@
 # Sistema de registro de créditos
-Herramienta web desarrollada con Python - Flask, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados.
+Herramienta web desarrollada con Python - Flask, que permite registrar, visualizar, editar y eliminar créditos otorgados a clientes. También incluye una gráfica dinámica que muestra el total de créditos otorgados por cliente.
 
 ## Características
 - Registro de créditos con los siguientes datos:
@@ -13,11 +13,12 @@ Herramienta web desarrollada con Python - Flask, que permite registrar, visualiz
 - Gráfica interactiva del total de créditos otorgados
 
 ## Tecnologías utilizadas
-- **Flask**: Framework web en Python
+- **Backend**: Flask (Python)
+- **Base de datos**: SQLite
+- **Frontend**: HTML, CSS, JavaScript (Bootstrap, Chart.js)
+- **Gráfica**: Chart.js para la visualización de los créditos
 - **Flask-SQLAlchemy**: ORM para manejar la base de datos SQLite
 - **Flask-CORS**: Para permitir el acceso desde el frontend
-- **Bootstrap**: Para el diseño responsivo de la interfaz
-- **Chart.js**: Para la generación de gráficas dinámicas
 
 ## Requisitos previos
 Antes de ejecutar el proyecto, debe de estar instalado:
@@ -62,15 +63,6 @@ Antes de ejecutar el proyecto, debe de estar instalado:
     Accede a la aplicación desde:
     http://127.0.0.1:5000
 
-
-## Tecnologías utilizadas
-
-- **Backend**: Flask (Python)
-- **Base de datos**: SQLite
-- **Frontend**: HTML, CSS, JavaScript (Bootstrap, Chart.js)
-- **Gráfica**: Chart.js para la visualización de los créditos
-
-
 ## Estructura del proyecto
     /HerramientaCreditos
     │── app.py                # Archivo principal que inicia la aplicación
@@ -81,4 +73,31 @@ Antes de ejecutar el proyecto, debe de estar instalado:
     │── requirements.txt      # Lista de dependencias necesarias
     │── README.md             # Documentación del proyecto
 
-    
+
+## Posibles errores y soluciones
+1. Error de dependencias
+**Problema:** Módulos de Python no encontrados.
+**Solución:** Ejecutar `pip install -r requirements.txt`.
+
+2. Error de base de datos
+**Problema:** `sqlite3.OperationalError: no such table: creditos`.
+**Solución:** Asegurarse de que `database.db` está creado. Si no, eliminarlo y volver a ejecutar `app.py`.
+
+3. Formato incorrecto en la fecha
+**Problema:** Se muestra `DD-MM-YYYY` en lugar de `YYYY-MM-DD`.
+**Solución:** Confirmar que `index.html` usa `pattern="\d{4}-\d{2}-\d{2}"` y que `routes.py` almacena la fecha como `String` en lugar de `Date`.
+
+## Imágenes de interfaz
+
+1. Registro de créditos 
+![RegistroDeCreditos](images/RegistroCreditos.png)
+
+2. Lista de créditos registrados 
+![CreditosRegistrados](images/CreditosRegistrados.png)
+
+3. Gráfica de créditos registrados 
+![GraficaCreditos](images/GraficaCreditos.png)
+
+4. Interfaz completa 
+![Interfaz](images/Interfaz.png)
+

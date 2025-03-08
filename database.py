@@ -14,8 +14,8 @@ class Credito(db.Model):
     plazo = db.Column(db.Integer, nullable=False)
     fecha_otorgamiento = db.Column(db.String(10), nullable=False)
 
+    # Convierte el objeto en un diccionario para JSON
     def to_dict(self) -> dict:
-        # Convierte el objeto en un diccionario para JSON
         return {
             'id': self.id,
             'cliente': self.cliente,
@@ -24,9 +24,9 @@ class Credito(db.Model):
             'plazo': self.plazo,
             'fecha_otorgamiento': self.fecha_otorgamiento
         }
-
-def init_db(app):
+    
     # Inicializa la base de datos con la aplicación Flask.
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+    def init_db(app):
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()

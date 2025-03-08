@@ -8,8 +8,8 @@ CORS(main)  # Habilita CORS para solicitudes desde el frontend
 
 
 @main.route('/creditos', methods=['POST'])
+# Registra un nuevo crédito en la base de datos
 def registrar_credito():
-    # Registra un nuevo crédito en la base de datos
     try:
         data = request.get_json(silent=True)
         if not data:
@@ -44,8 +44,8 @@ def registrar_credito():
 
 
 @main.route('/creditos', methods=['GET'])
+# Lista todos los créditos ordenados por fecha de otorgamiento
 def listar_creditos():
-    # Lista todos los créditos ordenados por fecha de otorgamiento
     try:
         creditos = Credito.query.order_by(Credito.fecha_otorgamiento.desc()).all()
         return jsonify([credito.to_dict() for credito in creditos]), 200
@@ -53,8 +53,8 @@ def listar_creditos():
         return jsonify({'error': str(e)}), 500
 
 @main.route('/creditos/<int:id>', methods=['GET'])
+# Obtiene un crédito específico por su ID
 def obtener_credito(id):
-    # Obtiene un crédito específico por su ID
     try:
         credito = Credito.query.get_or_404(id)
         return jsonify(credito.to_dict()), 200
@@ -63,8 +63,8 @@ def obtener_credito(id):
 
 
 @main.route('/creditos/<int:id>', methods=['PUT'])
+# Edita un crédito existente en la base de datos
 def editar_credito(id):
-    # Edita un crédito existente en la base de datos
     try:
         credito = Credito.query.get_or_404(id)
 
@@ -98,8 +98,8 @@ def editar_credito(id):
 
 
 @main.route('/creditos/<int:id>', methods=['DELETE'])
+# Elimina un crédito de la base de datos
 def eliminar_credito(id):
-    # Elimina un crédito de la base de datos
     try:
         credito = Credito.query.get_or_404(id)
         db.session.delete(credito)
